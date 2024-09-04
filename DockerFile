@@ -1,0 +1,26 @@
+# Gunakan image Python sebagai base image
+FROM python:3.9-slim
+
+# Install Java
+RUN apt-get update && \
+    apt-get install -y openjdk-11-jre-headless && \
+    apt-get clean;
+
+# Set JAVA_HOME environment variable
+ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64
+
+# Set working directory
+WORKDIR /app
+
+# Copy requirements file dan install dependensi Python
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy aplikasi ke dalam container
+COPY . /app
+
+# Expose port yang digunakan oleh Streamlit
+EXPOSE 8501
+
+# Jalankan aplikasi Streamlit
+CMD ["streamlit", "run", "main.py"]

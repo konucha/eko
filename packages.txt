@@ -1,4 +1,2 @@
-#!/bin/bash
-# Install Java
-sudo apt-get update
-sudo apt-get install -y openjdk-11-jdk
+docker build -t my-streamlit-app .
+docker run -p 8501:8501 my-streamlit-app
