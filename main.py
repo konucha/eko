@@ -1,5 +1,3 @@
-!pip install pip install streamlit konlpy JPype1
-
 import streamlit as st
 from konlpy.tag import Okt
 from collections import Counter
